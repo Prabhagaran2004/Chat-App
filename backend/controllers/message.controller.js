@@ -1,15 +1,16 @@
 const Message = require("../models/message.model")
 const User = require("../models/user.model")
+const cloudinary = require("../lib/cloudinary")
 
 
 const getUsers =  async(req , res) => {
     try {
         const loggedInUser = req.user._id
-        const filteredUsers = await User.findById({_id : {$ne : loggedInUser}}).select('-password')
+        const filteredUsers = await User.find({_id : {$ne : loggedInUser}}).select('-password')
         res.status(200).json(filteredUsers)
     } catch (error) {
         console.log("Error in getUsers controller", error);
-        return res.status(500).json({ message: "Internal Server Error" } );
+        return res.status(500).json({ message: error.message } );
     }
     
 }
@@ -28,7 +29,7 @@ const getMessages = async(req , res) => {
         res.status(200).json(messages)
     } catch (error) {
         console.log("Error in getMessages controller", error);
-        return res.status(500).json({ message: "Internal Server Error" } );
+        return res.status(500).json({ message: error.message } );
     }
 }
 
@@ -41,10 +42,10 @@ const sendMessage = async(req , res) => {
         let imageUrl;
 
         if(image){
-            const uploadedImage = await cloudinary_js_config.uploader.upload(image)
+            const uploadedImage = await cloudinary.uploader.upload(image)
             imageUrl = uploadedImage.secure_url;
         }
-        const newMessages = new Messages({
+        const newMessages = new Message({
             senderId,
             receiverId,
             text,
@@ -55,7 +56,7 @@ const sendMessage = async(req , res) => {
         res.status(200).json(newMessages)
     } catch (error) {
         console.log("Error in sendMessage controller", error);
-        return res.status(500).json({ message: "Internal Server Error" } );
+        return res.status(500).json({ message: error.message } );
     }
 }
 
