@@ -41,7 +41,7 @@ const signup = async(req , res) => {
     } catch (error) {
         console.log("Error in Signup Controller: ");
         
-        return res.status(500).json({ error });
+        return res.status(500).json({ message : error.message });
     }
 }
 const login = async(req , res) => {
@@ -72,7 +72,7 @@ const login = async(req , res) => {
         
     } catch (error) {
         console.log("Error in Login Controller: " , error);
-        return res.status(500).json({ error })
+        return res.status(500).json({ message : error.message })
     }
 }
 const logout = async(req , res) => {
@@ -80,7 +80,7 @@ const logout = async(req , res) => {
         res.cookie("jwt", "", {maxAge : 0})
         return res.status(200).json({
             message : "User logged out successfully"
-        })
+        }) 
     } catch (error) {
         console.log("Error in logout controller");
         return res.status(500).json({ error: "Something went wrong" });
@@ -90,6 +90,9 @@ const updateProfile = async(req , res) => {
     try {
         const {profilePic} = req.body;
         const userId = req.user._id
+        if (!userId) {
+            return res.status(401).json({ message: "User not authenticated" });
+        }
         if(!profilePic) {
             return res.status(400).json({ message: "Please provide a profile picture" });
         }
@@ -105,6 +108,7 @@ const updateProfile = async(req , res) => {
 }
 const checkAuth = async(req, res) => {
     try {
+        const user = await User.findById(req.user._id).select('-password');
         res.status(200).json(req.user);
     } catch (error) {
         console.log("Error in checkAuth controller: ", error);

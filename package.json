@@ -1,0 +1,21 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "A real-time chat application built with the MERN (MongoDB, Express.js, React.js, Node.js) stack, featuring user authentication, real-time messaging, and file uploads.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prabhagaran2004/Chat-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Prabhagaran2004/Chat-App/issues"
+  },
+  "homepage": "https://github.com/Prabhagaran2004/Chat-App#readme"
+}
