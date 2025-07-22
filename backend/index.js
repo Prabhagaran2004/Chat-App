@@ -10,7 +10,6 @@ const { app , server } = require('./lib/socket');
 const path = require('path')
 
 
-const __dirname = path.resolve()
 
 app.use(cookieParser());
 app.use(cors({
