@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A real-time chat application built with the MERN (MongoDB, Express.js, React.js, Node.js) stack, featuring user authentication, real-time messaging, and file uploads.",
   "main": "index.js",
+  "engines": {
+    "node": "18.x",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "build" : "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
     "start" : "npm run start --prefix backend"
