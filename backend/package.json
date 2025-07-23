@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "postinstall": "npm ls express || npm install express@4.18.2 --save"
   },
   "keywords": [],
   "author": "",

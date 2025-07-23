@@ -8,8 +8,10 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
-    "build" : "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
-    "start" : "npm run start --prefix backend"
+    "prebuild": "rm -rf backend/node_modules backend/package-lock.json frontend/node_modules frontend/package-lock.json",
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend",
+    "postinstall": "cd backend && npm install --force"
   },
   "repository": {
     "type": "git",
