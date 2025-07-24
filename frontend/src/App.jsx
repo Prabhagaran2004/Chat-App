@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar' 
 import Home from './pages/Home'
 import SignUpPage from './pages/SignUpPage'
 import LoginPage from './pages/LoginPage'
