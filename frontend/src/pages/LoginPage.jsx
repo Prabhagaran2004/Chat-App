@@ -31,8 +31,8 @@ const LoginPage = () => {
               >
                 <MessageSquare className="w-6 h-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold mt-2">Welcome Back</h1>
-              <p className="text-base-content/60">Sign in to your account</p>
+              <h1 className="text-2xl font-bold mt-2">Vaanga Vaanga</h1>
+              <p className="text-base-content/60">Sign in Pannitu Ponga</p>
             </div>
           </div>
 
@@ -99,9 +99,9 @@ const LoginPage = () => {
 
           <div className="text-center">
             <p className="text-base-content/60">
-              Don&apos;t have an account?{" "}
+              Account Illaya?{" "}
               <Link to="/signup" className="link link-primary">
-                Create account
+                Create Pannunga
               </Link>
             </p>
           </div>
@@ -110,7 +110,7 @@ const LoginPage = () => {
 
       {/* Right Side - Image/Pattern */}
       <AuthImagePattern
-        title={"Welcome back!"}
+        title={"Vanakam!"}
         subtitle={"Sign in to continue your conversations and catch up with your messages."}
       />
     </div>

@@ -21,13 +21,20 @@ export const useAuthStore = create((set, get) => ({
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {
+      // Handle 401 silently - it's expected when user is not authenticated
       if (error.response?.status === 401) {
-        console.log("User not authenticated");
+        console.log("User not authenticated - this is normal on first visit or after logout");
+        set({ authUser: null });
       } else {
-        console.log("Error in checkAuth:", error);
-        toast.error("Authentication check failed");
+        // Only show error toast for unexpected errors (500, network issues, etc.)
+        console.error("Unexpected error in checkAuth:", error);
+        if (error.response?.status >= 500) {
+          toast.error("Server error. Please try again later.");
+        } else if (!error.response) {
+          toast.error("Network error. Please check your connection.");
+        }
+        set({ authUser: null });
       }
-      set({ authUser: null });
     } finally {
       set({ isCheckingAuth: false });
     }
